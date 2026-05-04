@@ -98,7 +98,7 @@ JSON API Response + Historical Peer Matching
 ## 👨‍💻 Author
 
 **Chandan**
-- 🐙 GitHub: [@chandan](https://github.com/chandan)
+- 🐙 GitHub: 7735Chandanjena
 
 ---
 
