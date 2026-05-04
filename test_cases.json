@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Tropical Monsoon",
+    "payload": {
+      "moisture": 85,
+      "temp": 32,
+      "humidity": 80,
+      "ph": 6.2,
+      "rainfall": 1200
+    }
+  },
+  {
+    "name": "Arid Highland",
+    "payload": {
+      "moisture": 30,
+      "temp": 18,
+      "humidity": 30,
+      "ph": 7.0,
+      "rainfall": 400
+    }
+  },
+  {
+    "name": "Neutral Fertile Plains",
+    "payload": {
+      "moisture": 55,
+      "temp": 25,
+      "humidity": 50,
+      "ph": 6.5,
+      "rainfall": 800
+    }
+  },
+  {
+    "name": "Acidic Peat Soil",
+    "payload": {
+      "moisture": 60,
+      "temp": 22,
+      "humidity": 70,
+      "ph": 4.8,
+      "rainfall": 900
+    }
+  },
+  {
+    "name": "Extreme Heat Stress",
+    "payload": {
+      "moisture": 40,
+      "temp": 42,
+      "humidity": 25,
+      "ph": 6.8,
+      "rainfall": 300
+    }
+  },
+  {
+    "name": "Severe Drought",
+    "payload": {
+      "moisture": 12,
+      "temp": 35,
+      "humidity": 15,
+      "ph": 7.2,
+      "rainfall": 100
+    }
+  }
+]

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Agriculture System | KNN Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="flex flex-col md:flex-row items-center justify-between border-b pb-8 mb-10 border-stone-200">
+            <div class="text-center md:text-left mb-4 md:mb-0">
+                <h1 class="text-4xl serif font-black text-stone-900 leading-tight">Intelligent Agri-System</h1>
+                <p class="text-stone-500 italic mt-1">Leveraging K-Nearest Neighbors for Precision Farming</p>
+            </div>
+            <div class="flex items-center space-x-3 bg-emerald-50 border border-emerald-100 text-emerald-700 px-6 py-3 rounded-2xl shadow-sm">
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </div>
+                <span class="text-sm font-bold uppercase tracking-wider">KNN Engine Online</span>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Input Panel -->
+            <div class="lg:col-span-4 space-y-6">
+                <section class="bg-white p-8 rounded-3xl shadow-sm border border-stone-200">
+                    <h2 class="text-xl font-bold mb-6 flex items-center text-stone-900">
+                        <i class="fas fa-microchip mr-3 text-emerald-600"></i> Sensor Inputs
+                    </h2>
+                    <form id="agriForm" class="space-y-5">
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-widest text-stone-400 ml-1">Soil Moisture (%)</label>
+                            <input type="number" id="moisture" value="45" min="0" max="100" class="w-full bg-stone-50 border border-stone-100 p-3 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold uppercase tracking-widest text-stone-400 ml-1">Temp (°C)</label>
+                                <input type="number" id="temp" value="28" class="w-full bg-stone-50 border border-stone-100 p-3 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold uppercase tracking-widest text-stone-400 ml-1">Humidity (%)</label>
+                                <input type="number" id="humidity" value="60" class="w-full bg-stone-50 border border-stone-100 p-3 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-widest text-stone-400 ml-1">Soil pH</label>
+                            <input type="number" step="0.1" id="ph" value="6.5" class="w-full bg-stone-50 border border-stone-100 p-3 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-widest text-stone-400 ml-1">Rainfall (mm)</label>
+                            <input type="number" id="rainfall" value="750" class="w-full bg-stone-50 border border-stone-100 p-3 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-emerald-200 hover:bg-emerald-700 active:scale-[0.98] transition-all flex items-center justify-center space-x-2">
+                            <span>Analyze Environment</span>
+                            <i class="fas fa-chevron-right text-xs"></i>
+                        </button>
+                    </form>
+                </section>
+                
+                <div class="bg-stone-900 text-stone-400 p-6 rounded-3xl text-sm leading-relaxed">
+                    <p class="flex items-start">
+                        <i class="fas fa-info-circle mr-3 mt-1 text-blue-400"></i>
+                        <span>The KNN algorithm will compare your inputs to 1,500+ historical records to find the most similar environmental patterns.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Analysis Output -->
+            <div class="lg:col-span-8 space-y-6">
+                <!-- Result Cards -->
+                <div id="results" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Recommended Crop -->
+                    <div class="bg-emerald-600 text-white p-8 rounded-[2.5rem] shadow-xl relative overflow-hidden group">
+                        <i class="fas fa-seedling absolute -right-6 -bottom-6 text-[10rem] opacity-10 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-sm font-bold uppercase tracking-widest opacity-70">Recommended Crop</h3>
+                        <div class="text-5xl serif font-black mt-4" id="cropResult">--</div>
+                        <div class="mt-8 inline-block px-4 py-2 bg-white/20 rounded-xl backdrop-blur-md">
+                            <span class="text-xs uppercase font-bold tracking-tighter">Planting Window</span>
+                            <p id="windowResult" class="font-semibold text-sm">--</p>
+                        </div>
+                    </div>
+
+                    <!-- Predicted Metrics -->
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-stone-200 shadow-sm">
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">Resource Allocation</h3>
+                        <div class="space-y-5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-stone-500 font-medium"><i class="fas fa-tint mr-3 text-blue-400"></i> Irrigation</span>
+                                <span id="irrigResult" class="font-bold text-stone-900">--</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-stone-500 font-medium"><i class="fas fa-flask mr-3 text-orange-400"></i> Fertilizer</span>
+                                <span id="fertResult" class="font-bold text-stone-900">--</span>
+                            </div>
+                            <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                                <span class="text-stone-900 font-bold uppercase text-xs">Est. Yield</span>
+                                <span id="yieldResult" class="text-2xl font-black text-emerald-600">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Peer Analysis Table -->
+                <div id="basis" class="hidden bg-white p-8 rounded-[2.5rem] border border-stone-200 shadow-sm overflow-hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-bold text-stone-900">Historical Peer Analysis</h3>
+                        <span class="text-xs text-stone-400">Comparing K=5 Neighbors</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="text-stone-400 border-b border-stone-100">
+                                    <th class="pb-4 font-semibold uppercase tracking-tighter">Soil Moit.</th>
+                                    <th class="pb-4 font-semibold uppercase tracking-tighter">Temp</th>
+                                    <th class="pb-4 font-semibold uppercase tracking-tighter">Hist. Crop</th>
+                                    <th class="pb-4 font-semibold uppercase tracking-tighter text-right">Yield (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="basisTable" class="divide-y divide-stone-50">
+                                <!-- Data rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="h-96 flex flex-col items-center justify-center border-2 border-dashed border-stone-200 rounded-[3rem] text-stone-300">
+                    <div class="bg-stone-100 h-20 w-20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-satellite-dish text-2xl"></i>
+                    </div>
+                    <p class="font-medium">Enter environmental parameters to activate analysis</p>
+                    <p class="text-sm mt-1 opacity-60">Results are generated via adaptive KNN learning</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('agriForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalContent = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+
+            const payload = {
+                moisture: parseFloat(document.getElementById('moisture').value),
+                temp: parseFloat(document.getElementById('temp').value),
+                humidity: parseFloat(document.getElementById('humidity').value),
+                ph: parseFloat(document.getElementById('ph').value),
+                rainfall: parseFloat(document.getElementById('rainfall').value)
+            };
+
+            try {
+                const response = await fetch('/api/v1/recommend', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                
+                // Transition UI
+                document.getElementById('emptyState').classList.add('hidden');
+                document.getElementById('results').classList.remove('hidden');
+                document.getElementById('basis').classList.remove('hidden');
+                
+                // Update Main Card
+                document.getElementById('cropResult').innerText = data.recommendation.optimal_crop;
+                document.getElementById('windowResult').innerText = data.recommendation.planting_window;
+                
+                // Update Metrics
+                document.getElementById('yieldResult').innerText = data.recommendation.expected_yield + " kg";
+                document.getElementById('irrigResult').innerText = data.recommendation.irrigation_plan;
+                document.getElementById('fertResult').innerText = data.recommendation.fertilization_strategy;
+
+                // Update Neighbor Table
+                const table = document.getElementById('basisTable');
+                table.innerHTML = '';
+                data.historical_basis.forEach(h => {
+                    table.innerHTML += `
+                        <tr class="hover:bg-stone-50 transition-colors">
+                            <td class="py-4 font-mono text-stone-500">${h.soil_moisture}%</td>
+                            <td class="py-4 font-mono text-stone-500">${h.avg_temp}°C</td>
+                            <td class="py-4">
+                                <span class="bg-stone-100 px-3 py-1 rounded-lg font-bold text-stone-700">${h.optimal_crop}</span>
+                            </td>
+                            <td class="py-4 text-right font-black text-emerald-600">${h.expected_yield_kg}</td>
+                        </tr>
+                    `;
+                });
+            } catch (error) {
+                console.error("API Error:", error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalContent;
+            }
+        });
+    </script>
+</body>
+</html>
