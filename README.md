@@ -4,7 +4,7 @@
 
 The **Agri Intelligent System** is an AI-powered agricultural decision-support platform that leverages **K-Nearest Neighbors (KNN)** machine learning algorithms to analyze real-time soil and weather sensor data. It provides farmers and agricultural analysts with smart, data-driven recommendations to maximize crop yield and optimize resource usage.
 # Dashboard Screenshot
-
+![Agri Dashboard](Agri_prediction_Dashboard.png)
 
 ---
 
