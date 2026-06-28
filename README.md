@@ -1,12 +1,14 @@
-# 🌾 Agri Intelligent System — AI-Powered Agricultural Recommendation Engine
+# Agri Intelligent System — AI-Powered Agricultural Recommendation Engine
 
-## 📌 Overview
+##  Overview
 
 The **Agri Intelligent System** is an AI-powered agricultural decision-support platform that leverages **K-Nearest Neighbors (KNN)** machine learning algorithms to analyze real-time soil and weather sensor data. It provides farmers and agricultural analysts with smart, data-driven recommendations to maximize crop yield and optimize resource usage.
+# Dashboard Screenshot
+
 
 ---
 
-## 🚀 Features
+##  Features
 
 - 🌱 **Crop Classification** — Recommends the optimal crop based on soil & climate conditions
 - 📈 **Yield Prediction** — Estimates expected yield in kg/acre
@@ -34,7 +36,7 @@ The **Agri Intelligent System** is an AI-powered agricultural decision-support p
 
 
 
-## 📊 Dataset Information
+##  Dataset Information
 
 The system is trained on a clean agricultural dataset containing the following features:
 
@@ -54,7 +56,7 @@ The system is trained on a clean agricultural dataset containing the following f
 
 ---
 
-## 🧠 ML Model Details
+## ML Model Details
 
 | Model | Algorithm | Task | Neighbors |
 |-------|-----------|------|-----------|
@@ -63,7 +65,7 @@ The system is trained on a clean agricultural dataset containing the following f
 
 ---
 
-## 📋 Requirements
+## Requirements
 
 ```
 flask
@@ -80,7 +82,7 @@ pip freeze > requirements.txt
 
 ---
 
-## 🌐 How It Works
+## How It Works
 
 ```
 Sensor Data Input
@@ -98,7 +100,7 @@ JSON API Response + Historical Peer Matching
 ## 👨‍💻 Author
 
 **Chandan**
-- 🐙 GitHub: 7735Chandanjena
+-  GitHub: 7735Chandanjena
 
 ---
 
