@@ -10,16 +10,16 @@ The **Agri Intelligent System** is an AI-powered agricultural decision-support p
 
 ##  Features
 
-- 🌱 **Crop Classification** — Recommends the optimal crop based on soil & climate conditions
-- 📈 **Yield Prediction** — Estimates expected yield in kg/acre
-- 💧 **Irrigation Planning** — Calculates precise water requirements in liters
-- 🧪 **Fertilizer Strategy** — Suggests the right fertilizer quantity in kg/acre
-- 🌡️ **Planting Window Alert** — Flags sub-optimal temperature conditions in real time
-- 🔍 **Historical Peer Matching** — Explains AI predictions using similar past records (Explainability)
+-  **Crop Classification** — Recommends the optimal crop based on soil & climate conditions
+-  **Yield Prediction** — Estimates expected yield in kg/acre
+-  **Irrigation Planning** — Calculates precise water requirements in liters
+-  **Fertilizer Strategy** — Suggests the right fertilizer quantity in kg/acre
+-  **Planting Window Alert** — Flags sub-optimal temperature conditions in real time
+-  **Historical Peer Matching** — Explains AI predictions using similar past records (Explainability)
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component        | Technology              |
 |------------------|-------------------------|
@@ -52,7 +52,7 @@ The system is trained on a clean agricultural dataset containing the following f
 | `irrigation_needed_liters` | Water requirement in liters   |
 | `fertilizer_req_kg`   | Fertilizer requirement in kg       |
 
-> ✅ **Note:** The dataset is pre-cleaned — no additional preprocessing is required.
+>  **Note:** The dataset is pre-cleaned — no additional preprocessing is required.
 
 ---
 
@@ -97,11 +97,11 @@ JSON API Response + Historical Peer Matching
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Chandan**
 -  GitHub: 7735Chandanjena
 
 ---
 
-> 💡 *"Empowering farmers with AI-driven insights for smarter, sustainable agriculture."*
+>  *"Empowering farmers with AI-driven insights for smarter, sustainable agriculture."*
